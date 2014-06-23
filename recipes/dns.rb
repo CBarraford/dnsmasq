@@ -1,7 +1,9 @@
 include_recipe 'dnsmasq::default'
 include_recipe 'dnsmasq::manage_hostsfile'
 
+Chef::Log.info(node['dnsmasq'])
 dns_config = node['dnsmasq']['dns'].to_hash
+Chef::Log.info(dns_config)
 unless(node[:dnsmasq][:enable_dhcp])
   dns_config['no-dhcp-interface='] = nil
 end
